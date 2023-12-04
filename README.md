@@ -1,24 +1,29 @@
 # Weather Sprint 2
 
-For this day you are making the list below with the assigned weather app api
+Name: Elizabeth Trotter
 
-Start coding the structure layout
-Upload to Github
-Have all your API fetches made, shown in console
-Hosted on Vercel
+Date Revised: 12/4/2023
+
+Project: Weather Sprint Week 2
+
+Brief Description: Build a desktop weather application from a given prototype.
+
+Peer Review: 
 
 
-Things to turn in:
+------------------------------------------
 
-Code (zipped)
-Github Link in comments
-Figma link in comments
+EOD Report (by 3:45pm)
+
+DAY 1
 
 Completed:
-File structure setup
-Upload to GitHub
+- Started coding the basic structure layout
+- Upload repo to Github
+- Hosted on Vercel
+- Began API fetches, shown in console
 
-Questions to Ask Client:
-- assets? (icons, background)
-- current temp: will heart fill on click?
-- 
+To do:
+- Finish API fetches
+
+DAY 2

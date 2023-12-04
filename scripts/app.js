@@ -41,8 +41,8 @@ let dayFiveHighLow = document.getElementById("dayFiveHighLow");
 
 //Geo location is a built in API that allows the user to share their location upon request
 
-let userLat = 0;
-let userLon = 0;
+let userLat;
+let userLon;
 
 //navigator.geolocation this returns geolocation object
 //getCurrentPosition method lets the web app get the current position
@@ -50,10 +50,11 @@ let userLon = 0;
 navigator.geolocation.getCurrentPosition(success, errorFunc);
 
 //If the user accepts we run success function
-function success(position){
+async function success(position){
     userLat = position.coords.latitude;
     userLon = position.coords.longitude;
-    console.log(userLat + " " + userLon); //Test
+    console.log(userLat, userLon);
+    await currentWeatherAPI();
 }
 
 //If the user denies we run errorFunc
@@ -61,22 +62,29 @@ function errorFunc(error){
     console.log(error.message);
 }
 
-
-//Async Function Lecture
-
-// let rndImage = document.getElementById("rndImage");
-
 //async function allows us to use the key word await, it pauses the execution of the code until the promise is fufilled
 
-async function apiCall(){
+async function currentWeatherAPI(){
     //We make a fetch request this is our promise
 
     const promise = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${userLat}&lon=${userLon}&appid=${apiKey}&units=imperial`);
     //wait for our response and parse it into json data
     const data = await promise.json();
 
-    console.log(data.main.temp);
-    // rndImage.src = data.results[0].picture.large;
+    currentTemp.innerText = data.main.temp;
+    currentDesc.innerText = data.weather[0].main;
+    currentHighLow.innerText = data.main.temp_min + "°F | " + data.main.temp_max + "°F";
+    console.log(data.main.temp, data.weather[0].main, data.main.temp_min, data.main.temp_max);
 }
 
-apiCall();
+// currentWeatherAPI();
+
+async function hourlyWeatherAPI(){
+    const promise = await fetch(`api.openweathermap.org/data/2.5/forecast?lat=${userLat}&lon=${userLon}&appid=${apiKey}`);
+    const data = await promise.json();
+    fiveDayForecast = data;
+    console.log(fiveDayForecast.list[4].main.temp);
+    // morningTemp.innerText = data.;
+}
+
+// hourlyWeatherAPI();
