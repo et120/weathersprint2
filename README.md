@@ -17,3 +17,8 @@ Figma link in comments
 Completed:
 File structure setup
 Upload to GitHub
+
+Questions to Ask Client:
+- assets? (icons, background)
+- current temp: will heart fill on click?
+- 
