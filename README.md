@@ -28,13 +28,16 @@ To do:
 
 DAY 2
 
-12/5 Morning Stand Up: 
-9:00 - 10:00/30 Weather App
-10:00/30 - 12:00 Study for Evaluation
-12:00 - 1:30 Lunch
-1:30 - 2:00 Prepare for Evaluation
-2:00 - 3:00 **Evaluation**
-3:00 - 4:00 Decompress / Turn in today's Weather App
+Completed:
+- studied for evaluation
+- completed evaluation
+- started writing necessary functions in weather app
+
+To do:
+- continue with functions for high/low
+
+
+
 
 To Do List:
 - find max of highs for hourly forecast (for loop)
