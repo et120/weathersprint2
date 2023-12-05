@@ -35,3 +35,8 @@ DAY 2
 1:30 - 2:00 Prepare for Evaluation
 2:00 - 3:00 **Evaluation**
 3:00 - 4:00 Decompress / Turn in today's Weather App
+
+To Do List:
+- find max of highs for hourly forecast (for loop)
+- find min of lows for hourly forecast (for loop)
+- line of best fit/ interpolate for 8am, noon, 8pm for hourly forcast of future (next) day

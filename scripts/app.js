@@ -44,11 +44,13 @@ let dayFiveIcon = document.getElementById("dayFiveIcon");
 let dayFiveHigh = document.getElementById("dayFiveHigh");
 let dayFiveLow = document.getElementById("dayFiveLow");
 
+// JavaScript Variabls
+let userLat, userLon;
+let high = 0, low = 0;
 
 //Geo location is a built in API that allows the user to share their location upon request
 
-let userLat;
-let userLon;
+
 
 //navigator.geolocation this returns geolocation object
 //getCurrentPosition method lets the web app get the current position
@@ -131,6 +133,28 @@ async function hourlyWeatherAPI() {
     dayFiveIcon.innerHTML = data.list[36].weather[0].icon;
     dayFiveHigh.innerHTML = Math.round(data.list[36].main.temp_max);
     dayFiveLow.innerHTML = Math.round(data.list[36].main.temp_min);
+
+    function checkHighLow(){
+        for(let i = 0; i < data.list.length; i++){ 
+            if(data.list[i].main.temp_max > high){
+                high = data.list[i].main.temp_max;
+                console.log(high);
+            }
+        }
+        console.log(high);
+    }
+    
+    checkHighLow();
+}
+
+function checkHighLowOLD(data){
+    for(let i = 0; i < data.list.length; i++){
+        let high = 0;
+        if(data.list[i].main.temp_max > high){
+            high = data.list[i].main.temp_max;
+        }
+        // console.log(data.list[i].main.temp_max)
+    }
 }
 
 // hourlyWeatherAPI();
