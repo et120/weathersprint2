@@ -65,9 +65,10 @@ async function success(position) {
     console.log(userLat, userLon);
     await currentWeatherAPI();
     await hourlyWeatherAPI();
-    checkHighLow();
-    updateDateTime()
+    // checkHighLow();
+    updateDateTime();
     getTodayDate();
+    findFutureUnixDates();
 }
 
 //If the user denies we run errorFunc
@@ -78,7 +79,7 @@ async function errorFunc(error) {
     // console.log(userLat, userLon);
     await currentWeatherAPI();
     await hourlyWeatherAPI();
-    checkHighLow();
+    // checkHighLow();
     updateDateTime();
     getTodayDate();
 }
@@ -112,13 +113,18 @@ async function hourlyWeatherAPI() {
     const data = await promise.json();
     hourlyWeatherData = data;
     console.log(hourlyWeatherData);
+
     // TODAY HOURLY
-    morningIcon.innerHTML = hourlyWeatherData.list[2].weather[0].icon;
+    // morningIcon.innerHTML = hourlyWeatherData.list[2].weather[0].icon;
+    setIcon(morningIcon, hourlyWeatherData.list[2].weather[0].main);
     morningTemp.innerHTML = Math.round(hourlyWeatherData.list[2].main.temp);
-    afternoonIcon.innerHTML = hourlyWeatherData.list[3].weather[0].icon;
+    // afternoonIcon.innerHTML = hourlyWeatherData.list[3].weather[0].icon;
+    setIcon(afternoonIcon, hourlyWeatherData.list[3].weather[0].main);
     afternoonTemp.innerHTML = Math.round(hourlyWeatherData.list[3].main.temp);
-    nightIcon.innerHTML = hourlyWeatherData.list[5].weather[0].icon;
+    // nightIcon.innerHTML = hourlyWeatherData.list[5].weather[0].icon;
+    setIcon(nightIcon, hourlyWeatherData.list[5].weather[0].main);
     nightTemp.innerHTML = Math.round(hourlyWeatherData.list[5].main.temp);
+
     // 5 DAY FORECAST
     // dateDayOne.innerHTML = hourlyWeatherData.list[4].dt_txt;
     dayOneIcon.innerHTML = hourlyWeatherData.list[4].weather[0].icon;
@@ -175,15 +181,6 @@ function setIcon(element, weather) {
     }
 }
 
-function checkHighLow() {
-    for (let i = 0; i < hourlyWeatherData.list.length; i++) {
-        if (hourlyWeatherData.list[i].main.temp_max > high) {
-            high = hourlyWeatherData.list[i].main.temp_max;
-        }
-    }
-    console.log(high);
-}
-
 // hourlyWeatherAPI();
 
 // create a function to update the time
@@ -205,6 +202,8 @@ setInterval(updateDateTime, 1000);
 function getTodayDate() {
     let todayUnix = currentWeatherData.dt;
     let todayDateTime = new Date(todayUnix * 1000);
+    // console.log(todayDateTime.toLocaleDateString());
+    // console.log((new Date(todayUnix * 1000)).toLocaleDateString);
 
     let futureDayArray = [];
     for (let i = 1; i < 6; i++) {
@@ -220,14 +219,45 @@ function getTodayDate() {
     dateDayFour.innerHTML = futureDayArray[3];
     dateDayFive.innerHTML = futureDayArray[4];
 
-    // let futureDate = new Date(todayDateTime.setHours(todayDateTime.getHours()+24));
-    // // console.log(futureDate);
-    // // dateDayOne.innerHTML = unixDate.toLocaleDateString('en-US', { weekday: "short"}).toUpperCase();
-    // let futureWeekDay = futureDate.toLocaleDateString('en-US', { weekday: "short"}).toUpperCase();
-    // let futureDay = futureDate.toLocaleDateString('en-US', { month: "2-digit", day: "2-digit" }).toUpperCase();
-
-    // console.log(futureWeekDay + " " + futureDay);
+    
 
 }
 
+function findFutureUnixDates(){
+    let unixArrayForFuture = [];
+    let highArrayForFuture = [];
+    for(let i = 0; i < hourlyWeatherData.list.length; i++){
+        // unixArrayForFuture.push((hourlyWeatherData.list[i].dt));
+        if(!unixArrayForFuture.includes(new Date((hourlyWeatherData.list[i].dt) * 1000).toLocaleDateString())){
+            unixArrayForFuture.push(new Date((hourlyWeatherData.list[i].dt) * 1000).toLocaleDateString());
+        }
+    }
+    // for(let i = unixArrayForFuture.length - 1; i = 0; i--){
+    //     if(unixArrayForFuture[i] == unixArrayForFuture[i-1]){
+    //         unixArrayForFuture.pop();
+    //     }
+    //     console.log(unixArrayForFuture);
+    // }
 
+    console.log(unixArrayForFuture);
+    for(let i = 0; i < unixArrayForFuture.length; i++){
+        if(unixArrayForFuture[i] == new Date((hourlyWeatherData.list[i].dt) * 1000).toLocaleDateString()){
+            highArrayForFuture.push(unixArrayForFuture[i]);
+        }
+        
+        // console.log(new Date(unixArrayForFuture[i] * 1000).toLocaleDateString());
+    }
+    // console.log(highArrayForFuture);
+}
+
+function checkHighLow() {
+    for (let i = 0; i < hourlyWeatherData.list.length; i++) {
+        if(hourlyWeatherData.list[i] == todayDateTime){}
+        
+        
+        if (hourlyWeatherData.list[i].main.temp_max > high) {
+            high = hourlyWeatherData.list[i].main.temp_max;
+        }
+    }
+    // console.log(high);
+}
