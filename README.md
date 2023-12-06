@@ -2,7 +2,7 @@
 
 Name: Elizabeth Trotter
 
-Date Revised: 12/4/2023
+Date Revised: 12/7/2023
 
 Project: Weather Sprint Week 2
 
@@ -13,18 +13,18 @@ Peer Review:
 
 ------------------------------------------
 
-EOD Report (by 3:45pm)
+EOD Reports (due by 3:45pm)
 
 DAY 1
 
 Completed:
-- Started coding the basic structure layout
-- Upload repo to Github
-- Hosted on Vercel
-- Began API fetches, shown in console
+- started coding the basic structure layout HTML
+- uploaded repo to Github
+- hosted on Vercel
+- began API fetches, shown in console
 
 To do:
-- Finish API fetches
+- finish API fetches, shown in console ([X] -8:00pm)
 
 DAY 2
 
@@ -34,12 +34,29 @@ Completed:
 - started writing necessary functions in weather app
 
 To do:
-- continue with functions for high/low
+- continue with functions for high/low (add to tomorrow's list)
+- finish datetime function for today's time & future dates ([X] -12:50am)
+- icon function for today's date ([X] -12:50am)
+- identify all issues with data *see below ([X] -12:50am)
+- complete minimal styling ([X] -12:50am)
+- add all icons to assets ([X] -12:50am)
+
+Issues Identified: 
+- .name is deprecated by weather api (need to use reversegeocoder to obtain city)
+- highs & lows being called are only shown for a specific time of day
+- highs & lows are only available for a specific hour (every 3 hrs) on FUTURE days
+    *problem for morning & night for today 
+    *problem 5 day forecast highs/ lows all days
+- dates were not corresponding to dates on weather api (fixed)
 
 
 
 
 To Do List:
-- find max of highs for hourly forecast (for loop)
-- find min of lows for hourly forecast (for loop)
+- find max of highs for hourly forecast (for loop) [check for each dt ONLY]
+- find min of lows for hourly forecast (for loop) [check for each dt ONLY]
 - line of best fit/ interpolate for 8am, noon, 8pm for hourly forcast of future (next) day
+
+- search function
+- search: autofill? city, state?
+- favorites
