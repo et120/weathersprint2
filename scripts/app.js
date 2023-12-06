@@ -240,14 +240,19 @@ function findFutureUnixDates(){
     // }
 
     console.log(unixArrayForFuture);
+
     for(let i = 0; i < unixArrayForFuture.length; i++){
-        if(unixArrayForFuture[i] == new Date((hourlyWeatherData.list[i].dt) * 1000).toLocaleDateString()){
-            highArrayForFuture.push(unixArrayForFuture[i]);
+        for(let j = 0; j < hourlyWeatherData.list.length; j++){
+            if(unixArrayForFuture[i] == new Date((hourlyWeatherData.list[j].dt) * 1000).toLocaleDateString()){
+                highArrayForFuture.push(hourlyWeatherData.list[j].main.temp_max);
+                
+            }
         }
+        
         
         // console.log(new Date(unixArrayForFuture[i] * 1000).toLocaleDateString());
     }
-    // console.log(highArrayForFuture);
+    console.log(highArrayForFuture);
 }
 
 function checkHighLow() {
