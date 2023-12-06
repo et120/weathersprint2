@@ -49,6 +49,16 @@ Issues Identified:
     *problem 5 day forecast highs/ lows all days
 - dates were not corresponding to dates on weather api (fixed)
 
+DAY 3
+
+Completed:
+- worked on grouping days for 5 day forecast
+- worked on high/low function
+
+
+
+
+
 
 
 
