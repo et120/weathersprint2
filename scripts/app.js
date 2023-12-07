@@ -190,7 +190,7 @@ function hourlyForecast() {
             lowDay1.push(hourlyWeatherData.list[i].main.temp_min)
             weatherDay1.push(hourlyWeatherData.list[i].weather[0].main)
 
-            //Today's Morning, Afternoon, Night Temps
+            //Today's Morning, Afternoon, Night Temps Based on Tomorrow's Data
             const hours = unixFutureTime.getHours();
             
             const morningStart = 7, morningEnd = 9;

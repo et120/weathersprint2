@@ -9,7 +9,7 @@ Project: Weather Sprint Week 2
 Brief Description: Build a desktop weather application from a given prototype.
 
 Peer Review: 
-
+By: 
 
 ------------------------------------------
 
@@ -55,18 +55,23 @@ Completed:
 - worked on grouping days for 5 day forecast
 - worked on high/low function
 
+DAY 4
 
+Completed:
+- fixed issues 
+    *.name is deprecated by weather api (need to use reversegeocoder to obtain city)
+    *highs & lows being called are only shown for a specific time of day
+    *highs & lows are only available for a specific hour (every 3 hrs) on FUTURE days
+        problem for morning & night for today 
+        problem 5 day forecast highs/ lows all days
+- finished 5 day forecast all (including high/low function)
+- finished search
 
+To do:
 
+- need to start favorites
 
+DAY 5
 
-
-
-To Do List:
-- find max of highs for hourly forecast (for loop) [check for each dt ONLY]
-- find min of lows for hourly forecast (for loop) [check for each dt ONLY]
-- line of best fit/ interpolate for 8am, noon, 8pm for hourly forcast of future (next) day
-
-- search function
-- search: autofill? city, state?
-- favorites
+Completed:
+-
