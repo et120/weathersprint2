@@ -167,6 +167,7 @@ function getDates() {
     futureDate4 = new Date(todayDateTime.setHours(todayDateTime.getHours() + (24)));
     futureDate5 = new Date(todayDateTime.setHours(todayDateTime.getHours() + (24)));
 
+    //Set Dates for Forecast
     dateDayOne.innerHTML = futureDate1.toLocaleDateString('en-US', { weekday: "short" }).toUpperCase() + " " + futureDate1.toLocaleDateString('en-US', { month: "2-digit", day: "numeric" }).toUpperCase();
     dateDayTwo.innerHTML = futureDate2.toLocaleDateString('en-US', { weekday: "short" }).toUpperCase() + " " + futureDate2.toLocaleDateString('en-US', { month: "2-digit", day: "numeric" }).toUpperCase();
     dateDayThree.innerHTML = futureDate3.toLocaleDateString('en-US', { weekday: "short" }).toUpperCase() + " " + futureDate3.toLocaleDateString('en-US', { month: "2-digit", day: "numeric" }).toUpperCase();
@@ -183,13 +184,13 @@ function hourlyForecast() {
 
     for (let i = 0; i < hourlyWeatherData.list.length; i++) {
         let unixFutureTime = new Date(hourlyWeatherData.list[i].dt * 1000)
-        
+        //All Highs & Lows for Each Day
         if (unixFutureTime.toLocaleDateString('default') === futureDate1.toLocaleDateString('default')) {
             highDay1.push(hourlyWeatherData.list[i].main.temp_max)
             lowDay1.push(hourlyWeatherData.list[i].main.temp_min)
             weatherDay1.push(hourlyWeatherData.list[i].weather[0].main)
 
-            //Today's Morning, Afternoon, Night
+            //Today's Morning, Afternoon, Night Temps
             const hours = unixFutureTime.getHours();
             
             const morningStart = 6, morningEnd = 11;
@@ -230,7 +231,7 @@ function hourlyForecast() {
         }
     }
 
-    //Average Calculations
+    //Average Calculations (Today's Morning, Afternoon, Night Temps)
     let sumMorning = 0, sumAfternoon = 0, sumNight = 0;
     for(let i = 0; i < morningTempsArr.length; i++){
         sumMorning += morningTempsArr[i];
@@ -257,7 +258,7 @@ function hourlyForecast() {
     setIcon(nightIcon, nightCondition);
     nightTemp.innerHTML = Math.round(nightTempsAverage);
 
-    // 5 Day Forcast Set
+    // 5 Day Forcast Set (Calculate Highest & Lowest)
     setIcon(dayOneIcon, weatherDay1[0]);
     dayOneHigh.innerHTML = Math.round(Math.max(...highDay1));
     dayOneLow.innerHTML = Math.round(Math.min(...lowDay1));
@@ -280,7 +281,7 @@ function hourlyForecast() {
 }
 
 //Search
-userSearch.addEventListener('keypress', function (e) {
+userSearch.addEventListener('keypress', function(e){
     if (e.key === 'Enter') {
         success(userSearch.value)
         userSearch.value = "";
@@ -288,7 +289,7 @@ userSearch.addEventListener('keypress', function (e) {
         return false;
     }
 });
-searchBtn.addEventListener('click', function () {
+searchBtn.addEventListener('click', function(){
     success(userSearch.value);
     userSearch.value = "";
 });
