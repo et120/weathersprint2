@@ -193,9 +193,9 @@ function hourlyForecast() {
             //Today's Morning, Afternoon, Night Temps
             const hours = unixFutureTime.getHours();
             
-            const morningStart = 6, morningEnd = 11;
-            const afternoonStart = 12, afternoonEnd = 17;
-            const nightStart = 18, nightEnd = 23;
+            const morningStart = 7, morningEnd = 9;
+            const afternoonStart = 11, afternoonEnd = 13;
+            const nightStart = 17, nightEnd = 19;
 
             if (hours >= morningStart && hours <= morningEnd) {
                 morningTempsArr.push(hourlyWeatherData.list[i].main.temp);
