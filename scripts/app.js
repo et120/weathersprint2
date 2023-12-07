@@ -47,8 +47,7 @@ let dayFiveLow = document.getElementById("dayFiveLow");
 // JavaScript Variables
 let userLat, userLon;
 let currentWeatherData, locationData, hourlyWeatherData;
-let high = 0, low = 0;
-let todayUnix, todayDateTime, futureDate1, futureDate2, futureDate3, futureDate4, futureDate5;
+let todayUnix, todayDateTime, futureDate1, futureDate2, futureDate3, futureDate4, futureDate5, todayMorningUnix, todayAfternoonUnix, todayNightUnix;
 
 //Geo location is a built in API that allows the user to share their location upon request
 navigator.geolocation.getCurrentPosition(success, errorFunc);
@@ -56,13 +55,13 @@ navigator.geolocation.getCurrentPosition(success, errorFunc);
 //If the user accepts we run success function
 async function success(position) {
 
-    if(userSearch.value){
+    if (userSearch.value) {
         const promise = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${userSearch.value}&limit=5&appid=${apiKey}`);
         const data = await promise.json();
         userLat = data[0].lat;
         userLon = data[0].lon;
     }
-    else{
+    else {
         userLat = position.coords.latitude;
         userLon = position.coords.longitude;
     }
@@ -71,7 +70,7 @@ async function success(position) {
     await hourlyWeatherAPI();
     await reverseGeoAPI();
     updateDateTime();
-    getTodayDate();
+    getDates();
     hourlyForecast();
 }
 
@@ -80,89 +79,40 @@ async function errorFunc(error) {
     console.log(error.message);
     userLat = 37.9616;
     userLon = -121.2756;
-    // console.log(userLat, userLon);
+
     await currentWeatherAPI();
     await hourlyWeatherAPI();
     await reverseGeoAPI();
     updateDateTime();
-    getTodayDate();
+    getDates();
     hourlyForecast();
 }
 
 //async function allows us to use the key word await, it pauses the execution of the code until the promise is fufilled
 async function currentWeatherAPI() {
-    //We make a fetch request this is our promise
     const promise = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${userLat}&lon=${userLon}&appid=${apiKey}&units=imperial`);
-    //wait for our response and parse it into json data
     const data = await promise.json();
-
     currentWeatherData = data;
-    console.log(currentWeatherData);
 
     currentTemp.innerHTML = Math.round(currentWeatherData.main.temp);
     currentDesc.innerHTML = currentWeatherData.weather[0].main;
     currentHigh.innerHTML = Math.round(currentWeatherData.main.temp_max);
     currentLow.innerHTML = Math.round(currentWeatherData.main.temp_min);
-
     setIcon(currentWeatherIcon, currentWeatherData.weather[0].main);
-
-
 }
 
 async function reverseGeoAPI() {
     const location = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${userLat}&lon=${userLon}&limit=5&appid=${apiKey}`)
     const data = await location.json();
     locationData = data;
-    console.log(locationData);
+
     cityName.innerHTML = locationData[0].name.toUpperCase();
 }
 
 async function hourlyWeatherAPI() {
     const promise = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${userLat}&lon=${userLon}&appid=${apiKey}&units=imperial`);
     const data = await promise.json();
-
     hourlyWeatherData = data;
-    console.log(hourlyWeatherData);
-
-    // TODAY HOURLY
-
-    setIcon(morningIcon, hourlyWeatherData.list[2].weather[0].main);
-    morningTemp.innerHTML = Math.round(hourlyWeatherData.list[2].main.temp);
-
-    setIcon(afternoonIcon, hourlyWeatherData.list[3].weather[0].main);
-    afternoonTemp.innerHTML = Math.round(hourlyWeatherData.list[3].main.temp);
-
-    setIcon(nightIcon, hourlyWeatherData.list[5].weather[0].main);
-    nightTemp.innerHTML = Math.round(hourlyWeatherData.list[5].main.temp);
-
-    // // 5 DAY FORECAST
-    // // dateDayOne.innerHTML = hourlyWeatherData.list[4].dt_txt;
-    // dayOneIcon.innerHTML = hourlyWeatherData.list[4].weather[0].icon;
-    // dayOneHigh.innerHTML = Math.round(hourlyWeatherData.list[4].main.temp_max);
-    // dayOneLow.innerHTML = Math.round(hourlyWeatherData.list[4].main.temp_min);
-
-    // // dateDayTwo.innerHTML = hourlyWeatherData.list[12].dt_txt;
-    // dayTwoIcon.innerHTML = hourlyWeatherData.list[12].weather[0].icon;
-    // dayTwoHigh.innerHTML = Math.round(hourlyWeatherData.list[12].main.temp_max);
-    // dayTwoLow.innerHTML = Math.round(hourlyWeatherData.list[12].main.temp_min);
-
-    // // dateDayThree.innerHTML = hourlyWeatherData.list[20].dt_txt;
-    // dayThreeIcon.innerHTML = hourlyWeatherData.list[20].weather[0].icon;
-    // dayThreeHigh.innerHTML = Math.round(hourlyWeatherData.list[20].main.temp_max);
-    // dayThreeLow.innerHTML = Math.round(hourlyWeatherData.list[20].main.temp_min);
-
-    // // dateDayFour.innerHTML = hourlyWeatherData.list[28].dt_txt;
-    // dayFourIcon.innerHTML = hourlyWeatherData.list[28].weather[0].icon;
-    // dayFourHigh.innerHTML = Math.round(hourlyWeatherData.list[28].main.temp_max);
-    // dayFourLow.innerHTML = Math.round(hourlyWeatherData.list[28].main.temp_min);
-
-    // // dateDayFive.innerHTML = hourlyWeatherData.list[36].dt_txt;
-    // dayFiveIcon.innerHTML = hourlyWeatherData.list[36].weather[0].icon;
-    // dayFiveHigh.innerHTML = Math.round(hourlyWeatherData.list[36].main.temp_max);
-    // dayFiveLow.innerHTML = Math.round(hourlyWeatherData.list[36].main.temp_min);
-
-
-
 }
 
 function setIcon(element, weather) {
@@ -207,8 +157,7 @@ function updateDateTime() {
 // call the `updateDateTime` function every second
 setInterval(updateDateTime, 1000);
 
-//Date
-function getTodayDate() {
+function getDates() {
     todayUnix = currentWeatherData.dt;
     todayDateTime = new Date(todayUnix * 1000);
 
@@ -218,33 +167,45 @@ function getTodayDate() {
     futureDate4 = new Date(todayDateTime.setHours(todayDateTime.getHours() + (24)));
     futureDate5 = new Date(todayDateTime.setHours(todayDateTime.getHours() + (24)));
 
-    // let futureDayArray = [];
-    // for (let i = 1; i < 6; i++) {
-    //     let futureDate = new Date(todayDateTime.setHours(todayDateTime.getHours() + (24)));
-    //     let futureWeekDay = futureDate.toLocaleDateString('en-US', { weekday: "short" }).toUpperCase();
-    //     let futureDay = futureDate.toLocaleDateString('en-US', { month: "2-digit", day: "numeric" }).toUpperCase();
-    //     let futureDayforArr = futureWeekDay + " " + futureDay;
-    //     futureDayArray.push(futureDayforArr);
-    // }
     dateDayOne.innerHTML = futureDate1.toLocaleDateString('en-US', { weekday: "short" }).toUpperCase() + " " + futureDate1.toLocaleDateString('en-US', { month: "2-digit", day: "numeric" }).toUpperCase();
     dateDayTwo.innerHTML = futureDate2.toLocaleDateString('en-US', { weekday: "short" }).toUpperCase() + " " + futureDate2.toLocaleDateString('en-US', { month: "2-digit", day: "numeric" }).toUpperCase();
     dateDayThree.innerHTML = futureDate3.toLocaleDateString('en-US', { weekday: "short" }).toUpperCase() + " " + futureDate3.toLocaleDateString('en-US', { month: "2-digit", day: "numeric" }).toUpperCase();
     dateDayFour.innerHTML = futureDate4.toLocaleDateString('en-US', { weekday: "short" }).toUpperCase() + " " + futureDate4.toLocaleDateString('en-US', { month: "2-digit", day: "numeric" }).toUpperCase();
     dateDayFive.innerHTML = futureDate5.toLocaleDateString('en-US', { weekday: "short" }).toUpperCase() + " " + futureDate5.toLocaleDateString('en-US', { month: "2-digit", day: "numeric" }).toUpperCase();
-
 }
 
 function hourlyForecast() {
     let highDay1 = [], highDay2 = [], highDay3 = [], highDay4 = [], highDay5 = [];
     let lowDay1 = [], lowDay2 = [], lowDay3 = [], lowDay4 = [], lowDay5 = [];
     let weatherDay1 = [], weatherDay2 = [], weatherDay3 = [], weatherDay4 = [], weatherDay5 = [];
+    let morningTempsArr = [], afternoonTempsArr = [], nightTempsArr = [];
+    let morningCondition, afternoonCondition, nightCondition;
 
     for (let i = 0; i < hourlyWeatherData.list.length; i++) {
         let unixFutureTime = new Date(hourlyWeatherData.list[i].dt * 1000)
+        
         if (unixFutureTime.toLocaleDateString('default') === futureDate1.toLocaleDateString('default')) {
             highDay1.push(hourlyWeatherData.list[i].main.temp_max)
             lowDay1.push(hourlyWeatherData.list[i].main.temp_min)
             weatherDay1.push(hourlyWeatherData.list[i].weather[0].main)
+
+            //Today's Morning, Afternoon, Night
+            const hours = unixFutureTime.getHours();
+            
+            const morningStart = 6, morningEnd = 11;
+            const afternoonStart = 12, afternoonEnd = 17;
+            const nightStart = 18, nightEnd = 23;
+
+            if (hours >= morningStart && hours <= morningEnd) {
+                morningTempsArr.push(hourlyWeatherData.list[i].main.temp);
+                morningCondition = hourlyWeatherData.list[i].weather[0].main;
+            } else if (hours >= afternoonStart && hours <= afternoonEnd) {
+                afternoonTempsArr.push(hourlyWeatherData.list[i].main.temp);
+                afternoonCondition = hourlyWeatherData.list[i].weather[0].main;
+            } else if (hours >= nightStart && hours <= nightEnd) {
+                nightTempsArr.push(hourlyWeatherData.list[i].main.temp);
+                nightCondition = hourlyWeatherData.list[i].weather[0].main;
+            }
         }
         else if (unixFutureTime.toLocaleDateString('default') === futureDate2.toLocaleDateString('default')) {
             highDay2.push(hourlyWeatherData.list[i].main.temp_max)
@@ -269,35 +230,65 @@ function hourlyForecast() {
         }
     }
 
+    //Average Calculations
+    let sumMorning = 0, sumAfternoon = 0, sumNight = 0;
+    for(let i = 0; i < morningTempsArr.length; i++){
+        sumMorning += morningTempsArr[i];
+    }
+    let morningTempsAverage = sumMorning / morningTempsArr.length;
+
+    for(let i = 0; i < afternoonTempsArr.length; i++){
+        sumAfternoon += afternoonTempsArr[i];
+    }
+    let afternoonTempsAverage = sumAfternoon / afternoonTempsArr.length;
+
+    for(let i = 0; i < nightTempsArr.length; i++){
+        sumNight += nightTempsArr[i];
+    }
+    let nightTempsAverage = sumNight / nightTempsArr.length;
+
+    // Today Morning, Afternoon, Night Set
+    setIcon(morningIcon, morningCondition);
+    morningTemp.innerHTML = Math.round(morningTempsAverage);
+
+    setIcon(afternoonIcon, afternoonCondition);
+    afternoonTemp.innerHTML = Math.round(afternoonTempsAverage);
+
+    setIcon(nightIcon, nightCondition);
+    nightTemp.innerHTML = Math.round(nightTempsAverage);
+
+    // 5 Day Forcast Set
     setIcon(dayOneIcon, weatherDay1[0]);
-    dayOneHigh.innerHTML = `${Math.round(Math.max(...highDay1))}`;
-    dayOneLow.innerHTML = `${Math.round(Math.min(...lowDay1))}`;
+    dayOneHigh.innerHTML = Math.round(Math.max(...highDay1));
+    dayOneLow.innerHTML = Math.round(Math.min(...lowDay1));
 
     setIcon(dayTwoIcon, weatherDay2[0]);
-    dayTwoHigh.innerHTML = `${Math.round(Math.max(...highDay2))}`;
-    dayTwoLow.innerHTML = `${Math.round(Math.min(...lowDay2))}`;
+    dayTwoHigh.innerHTML = Math.round(Math.max(...highDay2));
+    dayTwoLow.innerHTML = Math.round(Math.min(...lowDay2));
 
     setIcon(dayThreeIcon, weatherDay3[0]);
-    dayThreeHigh.innerHTML = `${Math.round(Math.max(...highDay3))}`;
-    dayThreeLow.innerHTML = `${Math.round(Math.min(...lowDay3))}`;
+    dayThreeHigh.innerHTML = Math.round(Math.max(...highDay3));
+    dayThreeLow.innerHTML = Math.round(Math.min(...lowDay3));
 
     setIcon(dayFourIcon, weatherDay4[0]);
-    dayFourHigh.innerHTML = `${Math.round(Math.max(...highDay4))}`;
-    dayFourLow.innerHTML = `${Math.round(Math.min(...lowDay4))}`;
+    dayFourHigh.innerHTML = Math.round(Math.max(...highDay4));
+    dayFourLow.innerHTML = Math.round(Math.min(...lowDay4));
 
     setIcon(dayFiveIcon, weatherDay5[0]);
-    dayFiveHigh.innerHTML = `${Math.round(Math.max(...highDay5))}`;
-    dayFiveLow.innerHTML = `${Math.round(Math.min(...lowDay5))}`;
+    dayFiveHigh.innerHTML = Math.round(Math.max(...highDay5));
+    dayFiveLow.innerHTML = Math.round(Math.min(...lowDay5));
 }
 
 //Search
-userSearch.addEventListener('keypress', function(e){
-    if(e.key === 'Enter'){
+userSearch.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
         success(userSearch.value)
+        userSearch.value = "";
         e.preventDefault();
         return false;
     }
 });
 searchBtn.addEventListener('click', function () {
     success(userSearch.value);
+    userSearch.value = "";
 });
