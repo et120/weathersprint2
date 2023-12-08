@@ -255,7 +255,8 @@ function hourlyForecast() {
     setIcon(afternoonIcon, afternoonCondition);
     afternoonTemp.innerHTML = Math.round(afternoonTempsAverage);
 
-    setIcon(nightIcon, nightCondition);
+    // setIcon(nightIcon, nightCondition);
+    nightIcon.src = "./assets/moon.png";
     nightTemp.innerHTML = Math.round(nightTempsAverage);
 
     // 5 Day Forcast Set (Calculate Highest & Lowest)
