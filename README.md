@@ -18,7 +18,7 @@ Prototype: https://xd.adobe.com/view/2def5507-24dd-4a9f-b04f-159744f2acc5-78bc/s
 
 ## EOD Reports *(due by 3:45pm)*
 
-**DAY 1**
+**DAY 1** :racehorse:
 
 Completed:
 - started coding the basic structure layout HTML
@@ -29,7 +29,7 @@ Completed:
 To do:
 - finish API fetches, shown in console ([X] -8:00pm)
 
-**DAY 2**
+**DAY 2** :alien:
 
 Completed:
 - studied for evaluation
@@ -52,7 +52,7 @@ Issues Identified:
     *problem 5 day forecast highs/ lows all days
 - dates were not corresponding to dates on weather api (fixed)
 
-**DAY 3**
+**DAY 3** :partly_sunny:
 
 Completed:
 - worked on grouping days for 5 day forecast
@@ -62,7 +62,7 @@ Completed:
 To do:
 - research unix time [X]
 
-**DAY 4**
+**DAY 4** :sunny:
 
 Completed:
 - fixed issues 
@@ -81,7 +81,7 @@ To do:
 - found correct icons & replaced existing [X]
 - found similar fonts [X]
 
-**DAY 5**
+**DAY 5** :sunglasses:
 
 Completed:
 - finished favorites functions
