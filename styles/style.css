@@ -67,10 +67,31 @@ body {
 }
 
 /* Body */
+/* Borders */
 .borderRadius {
     border-radius: 15px;
 }
 
+.borderDotted {
+    border-right: 2px dotted #131313;
+    height: 230px;
+}
+
+.left-dotted-gradient {
+    background-image: linear-gradient(to bottom, #000 40%, rgba(255, 255, 255, 0) 10%);
+    background-position: left;
+    background-size: 2px 8px;
+    background-repeat: repeat-y;
+}
+
+.dotted-gradient {
+    background-image: linear-gradient(to right, #000 30%, rgba(255, 255, 255, 0) 10%);
+    background-position: top;
+    background-size: 8px 2px;
+    background-repeat: repeat-x;
+}
+
+/* Text */
 .RobotoLightFont {
     font-family: 'Roboto-Light';
 }
@@ -107,4 +128,28 @@ body {
 .todaysTempsHour {
     font-family: 'elmessiri-regular';
     font-size: 55px;
+}
+
+.fiveDayText {
+    font-size: 23px;
+}
+
+.fiveDayTemp {
+    font-size: 21px;
+}
+
+.favoritesBtnS {
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.953);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    padding-left: 130px;
+    padding-right: 130px;
+}
+
+/* Background */
+.bgTransparent {
+    background: rgba(255, 255, 255, 0.33);
 }

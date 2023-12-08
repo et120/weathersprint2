@@ -15,8 +15,8 @@
 
     <!-- Navbar -->
     <nav class="navbar bgWhite">
-        <div class="container-fluid mx-5 px-5 d-flex justify-content-evenly">
-          <a class="navbar-brand navTitle ms-5 ps-5 pb-0">climate.xchange</a>
+        <div class="container-fluid ms-5 ps-5 d-flex justify-content-around">
+          <a class="navbar-brand navTitle ps-1 pb-0 ">climate.xchange</a>
           <form class="d-flex me-5 pe-5" role="search">
             <input id="userSearch" class="form-control me-2 searchBox" type="text" placeholder="Search for a City" aria-label="Search">
             <button id="searchBtn" class="btn searchBtn" type="button"><img class="img-fluid" width="25px" src="./assets/magnify.png" alt="search icon"></button>
@@ -25,31 +25,30 @@
       </nav>
     <!-- Navbar End -->
 
-    <div class="container pt-4">
+    <div class="container mt-3" style="width: 80%;">
         <br>
         <!-- Main -->
         <div class="row d-flex justify-content-center">
-            <div class="col-4 bgWhite borderRadius me-2">
+            <div class="col-5 bgWhite borderRadius me-2">
                 <div class="row ps-4 pt-4">
                     <div class="col">
                         <h4 id="cityName" class="RobotoLightFont headerText">SAN FRANCISCO</h4>
                     </div>
-                    <div class="col">
-                        <img src="./assets/heart.png" alt="heart icon" style="height: 20px;">
+                    <div class="col text-end pe-5">
+                        <img src="./assets/heart.png" alt="heart icon" style="height: 27px;">
                     </div>
                 </div>
 
                 <div class="row ps-4">
-                    <div class="col">
+                    <div class="col-4 text-end">
                         <p class="weatherIconFont" id="currentWeatherIcon"></p>
                     </div>
-                    <div class="col">
+                    <div class="col-5 text-start">
                         <h2 class="tempText"><span id="currentTemp">54</span>°F</h2>
                     </div>
                 </div>
 
-                <hr>
-                <div class="row ps-4 belowCityText">
+                <div class="row ps-4 belowCityText pt-5 dotted-gradient">
                     <div class="col">
                         <p id="currentDesc">cloudy</p>
                     </div>
@@ -59,28 +58,28 @@
                 </div>
             </div>
             
-            <div class="col-4 bgWhite borderRadius ms-2">
-                <div class="row">
+            <div class="col-5 bgWhite borderRadius ms-2">
+                <div class="row ps-4 pt-4">
                     <div class="col">
                         <h4 class="RobotoLightFont headerText2">TODAY</h4>
                     </div>
-                    <div class="col">
+                    <div class="col text-end pe-5">
                         <p id="time" class="RobotoLightFont headerText2">12:55 PM</p>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col-4 text-center">
                         <p class="timesText">8am</p>
                         <p class="weatherIconFont" id="morningIcon"></p>
                         <h2 class="todaysTempsHour"><span id="morningTemp">38</span>°</h2>
                     </div>
-                    <div class="col">
+                    <div class="col-4 text-center left-dotted-gradient">
                         <p class="timesText">noon</p>
                         <p class="weatherIconFont" id="afternoonIcon"></p>
                         <h2 class="todaysTempsHour"><span id="afternoonTemp">54</span>°</h2>
                     </div>
-                    <div class="col">
+                    <div class="col-4 text-center left-dotted-gradient">
                         <p class="timesText">8pm</p>
                         <p class="weatherIconFont" id="nightIcon"></p>
                         <h2 class="todaysTempsHour"><span id="nightTemp">58</span>°</h2>
@@ -89,41 +88,43 @@
             </div>
         </div>
         <!-- 1st Row End -->
+    </div>
 
-        <br>
-        <div class="row RobotoLightFont">
-            <div class="col border">
-                <h5 id="dateDayOne">TUE 12/8</h5>
+    <div class="container mt-3" style="width: 79%;">
+        <div class="row d-flex justify-content-center RobotoLightFont">
+            <div class="col-2 pt-4 pb-3 text-center borderRadius bgTransparent mx-2">
+                <h5 id="dateDayOne" class="fiveDayText">TUE 12/8</h5>
                 <p class="weatherIconFont" id="dayOneIcon"></p>
-                <p class="RobotoRegularFont"><span id="dayOneHigh">74</span>°F | <span id="dayOneLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayOneHigh">74</span>°F | <span id="dayOneLow">34</span>°F</p>
             </div>
-            <div class="col border">
-                <h5 id="dateDayTwo">WED 12/9</h5>
+            <div class="col-2 pt-4 text-center borderRadius bgTransparent me-2">
+                <h5 id="dateDayTwo" class="fiveDayText">WED 12/9</h5>
                 <p class="weatherIconFont" id="dayTwoIcon"></p>
-                <p class="RobotoRegularFont"><span id="dayTwoHigh">74</span>°F | <span id="dayTwoLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayTwoHigh">74</span>°F | <span id="dayTwoLow">34</span>°F</p>
             </div>
-            <div class="col border">
-                <h5 id="dateDayThree">THU 12/10</h5>
+            <div class="col-2 pt-4 text-center borderRadius bgTransparent me-2">
+                <h5 id="dateDayThree" class="fiveDayText">THU 12/10</h5>
                 <p class="weatherIconFont" id="dayThreeIcon"></p>
-                <p class="RobotoRegularFont"><span id="dayThreeHigh">74</span>°F | <span id="dayThreeLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayThreeHigh">74</span>°F | <span id="dayThreeLow">34</span>°F</p>
             </div>
-            <div class="col border">
-                <h5 id="dateDayFour">FRI 12/11</h5>
+            <div class="col-2 pt-4 text-center borderRadius bgTransparent me-2">
+                <h5 id="dateDayFour" class="fiveDayText">FRI 12/11</h5>
                 <p class="weatherIconFont" id="dayFourIcon"></p>
-                <p class="RobotoRegularFont"><span id="dayFourHigh">74</span>°F | <span id="dayFourLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayFourHigh">74</span>°F | <span id="dayFourLow">34</span>°F</p>
             </div>
-            <div class="col border">
-                <h5 id="dateDayFive">SAT 12/12</h5>
+            <div class="col-2 pt-4 text-center borderRadius bgTransparent me-2">
+                <h5 id="dateDayFive" class="fiveDayText">SAT 12/12</h5>
                 <p class="weatherIconFont" id="dayFiveIcon"></p>
-                <p class="RobotoRegularFont"><span id="dayFiveHigh">74</span>°F | <span id="dayFiveLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayFiveHigh">74</span>°F | <span id="dayFiveLow">34</span>°F</p>
             </div>
         </div>
         <!-- 2nd Row End -->
+    </div>
 
         <br>
-        <div class="row d-flex justify-content-center">
-            <button style="width: 40%;"><img src="./assets/like.png" alt="heart icon" style="height: 20px;"> Open Your
-                Favorite Places</button>
+        <div class="container d-flex justify-content-center">
+                <p id="favoritesBtn" class="my-0 text-center d-flex align-items-center favoritesBtnS bgTransparent RobotoRegularFont"><span class="heart-text sp-icon-open"><img src="./assets/like.png" alt="heart icon" style="height: 20px;"> Open Your
+                    Favorite Places</p>
         </div>
         <!-- 3rd Row End -->
         <!-- Main End -->
@@ -136,7 +137,7 @@
         </div>
         <!-- Footer End -->
 
-    </div>
+    
 
 
 
