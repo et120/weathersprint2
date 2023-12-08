@@ -70,13 +70,14 @@ async function success(position) {
         userLon = position.coords.longitude;
     }
 
-    updateFavoritesIcon();
+    
     await currentWeatherAPI();
     await hourlyWeatherAPI();
     await reverseGeoAPI();
     updateDateTime();
     getDates();
     hourlyForecast();
+    updateFavoritesIcon();
 }
 
 //If the user denies we run errorFunc
@@ -291,17 +292,23 @@ function hourlyForecast() {
 userSearch.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         success(userSearch.value)
-        userSearch.value = "";
         e.preventDefault();
+        updateFavoritesIcon();
+        userSearch.value = "";
         return false;
     }
 });
 searchBtn.addEventListener('click', function () {
     success(userSearch.value);
+    updateFavoritesIcon();
     userSearch.value = "";
 });
 
 // Local Storage
+if(localStorage.getItem("favorites")){
+    favoritesArray = JSON.parse(localStorage.getItem("favorites"))
+};
+
 favoritesAddBtn.addEventListener('click', function () {
     if (favoritesArray.includes(cityName.textContent)) {
         let index = favoritesArray.indexOf(cityName.textContent);
@@ -315,16 +322,69 @@ favoritesAddBtn.addEventListener('click', function () {
 });
 
 function updateFavoritesIcon(){
-    if (favoritesArray.includes(userSearch.value || cityName.textContent)) {
+    if (favoritesArray.includes(userSearch.value.toUpperCase() || cityName.textContent)) {
         favoritesAddBtn.src = "../assets/like.png";
     } else {
         favoritesAddBtn.src = "../assets/heart.png";
     }
+    userSearch.value = "";
 }
 
-favoritesRemoveBtn.addEventListener('click', function () {
-    let index = favoritesArray.indexOf(cityName.value);
-    favoritesArray.splice(index, 1);
+// favoritesRemoveBtn.addEventListener('click', function () {
+//     let index = favoritesArray.indexOf(cityName.textContent);
+//     favoritesArray.splice(index, 1);
+//     localStorage.setItem("favorites", JSON.stringify(favoritesArray));
+// });
 
-    localStorage.setItem("favorites", JSON.stringify(favoritesArray));
+
+
+let favoritesList = document.getElementById("favoritesList");
+const favoritesModal = document.getElementById('favoritesModal');
+
+// Assuming you're using Bootstrap for your modal, use the 'shown.bs.modal' event
+favoritesModal.addEventListener('shown.bs.modal', event => {
+    // Clear the existing content before adding the elements
+    favoritesList.innerHTML = "";
+
+    // Loop through the favoritesArray and add each city to the modal
+    for (let i = 0; i < favoritesArray.length; i++) {
+        addElement(favoritesArray[i]);
+    }
 });
+
+function addElement(city) {
+    // Create a new div element
+    const newDiv = document.createElement("div");
+
+    // Give it some content
+    const newContent = document.createTextNode(city);
+
+    // Add the text node to the newly created div
+    newDiv.appendChild(newContent);
+
+    // Add the newly created element and its content into the favoritesList
+    favoritesList.appendChild(newDiv);
+}
+
+
+// const favoritesModal = document.getElementById('favoritesModal')
+// favoritesModal.addEventListener('shown.bs.modal', event => {
+//     for(let i = 0; i < favoritesArray.length; i++){
+//         favoritesList.innerHTML = addElement(i);
+//     }
+// })
+
+// function addElement(i) {
+//     // create a new div element
+//     const newDiv = document.createElement("div");
+  
+//     // and give it some content
+//     const newContent = document.createTextNode(favoritesArray[i]);
+  
+//     // add the text node to the newly created div
+//     newDiv.appendChild(newContent);
+  
+//     // add the newly created element and its content into the DOM
+//     const currentDiv = document.getElementById("div1");
+//     document.body.insertBefore(newDiv, currentDiv);
+//   }

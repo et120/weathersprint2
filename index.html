@@ -16,13 +16,15 @@
     <!-- Navbar -->
     <nav class="navbar bgWhite">
         <div class="container-fluid ms-5 ps-5 d-flex justify-content-around">
-          <a class="navbar-brand navTitle ps-1 pb-0 ">climate.xchange</a>
-          <form class="d-flex me-5 pe-5" role="search">
-            <input id="userSearch" class="form-control me-2 searchBox" type="text" placeholder="Search for a City" aria-label="Search">
-            <button id="searchBtn" class="btn searchBtn" type="button"><img class="img-fluid" width="25px" src="./assets/magnify.png" alt="search icon"></button>
-          </form>
+            <a class="navbar-brand navTitle ps-1 pb-0 ">climate.xchange</a>
+            <form class="d-flex me-5 pe-5" role="search">
+                <input id="userSearch" class="form-control me-2 searchBox" type="text" placeholder="Search for a City"
+                    aria-label="Search">
+                <button id="searchBtn" class="btn searchBtn" type="button"><img class="img-fluid" width="25px"
+                        src="./assets/magnify.png" alt="search icon"></button>
+            </form>
         </div>
-      </nav>
+    </nav>
     <!-- Navbar End -->
 
     <div class="container mt-3" style="width: 80%;">
@@ -35,7 +37,8 @@
                         <h4 id="cityName" class="RobotoLightFont headerText">SAN FRANCISCO</h4>
                     </div>
                     <div class="col text-end pe-5">
-                        <div><img id="favoritesAddBtn" src="./assets/heart.png" alt="heart icon" style="height: 27px;"></div>
+                        <div><img id="favoritesAddBtn" src="./assets/heart.png" alt="heart icon" style="height: 27px;">
+                        </div>
                     </div>
                 </div>
 
@@ -57,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-5 bgWhite borderRadius ms-2">
                 <div class="row ps-4 pt-4">
                     <div class="col">
@@ -95,49 +98,75 @@
             <div class="col-2 pt-4 pb-3 text-center borderRadius bgTransparent mx-2">
                 <h5 id="dateDayOne" class="fiveDayText">TUE 12/8</h5>
                 <p class="weatherIconFont" id="dayOneIcon"></p>
-                <p class="RobotoRegularFont fiveDayTemp"><span id="dayOneHigh">74</span>°F | <span id="dayOneLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayOneHigh">74</span>°F | <span
+                        id="dayOneLow">34</span>°F</p>
             </div>
             <div class="col-2 pt-4 text-center borderRadius bgTransparent me-2">
                 <h5 id="dateDayTwo" class="fiveDayText">WED 12/9</h5>
                 <p class="weatherIconFont" id="dayTwoIcon"></p>
-                <p class="RobotoRegularFont fiveDayTemp"><span id="dayTwoHigh">74</span>°F | <span id="dayTwoLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayTwoHigh">74</span>°F | <span
+                        id="dayTwoLow">34</span>°F</p>
             </div>
             <div class="col-2 pt-4 text-center borderRadius bgTransparent me-2">
                 <h5 id="dateDayThree" class="fiveDayText">THU 12/10</h5>
                 <p class="weatherIconFont" id="dayThreeIcon"></p>
-                <p class="RobotoRegularFont fiveDayTemp"><span id="dayThreeHigh">74</span>°F | <span id="dayThreeLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayThreeHigh">74</span>°F | <span
+                        id="dayThreeLow">34</span>°F</p>
             </div>
             <div class="col-2 pt-4 text-center borderRadius bgTransparent me-2">
                 <h5 id="dateDayFour" class="fiveDayText">FRI 12/11</h5>
                 <p class="weatherIconFont" id="dayFourIcon"></p>
-                <p class="RobotoRegularFont fiveDayTemp"><span id="dayFourHigh">74</span>°F | <span id="dayFourLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayFourHigh">74</span>°F | <span
+                        id="dayFourLow">34</span>°F</p>
             </div>
             <div class="col-2 pt-4 text-center borderRadius bgTransparent me-2">
                 <h5 id="dateDayFive" class="fiveDayText">SAT 12/12</h5>
                 <p class="weatherIconFont" id="dayFiveIcon"></p>
-                <p class="RobotoRegularFont fiveDayTemp"><span id="dayFiveHigh">74</span>°F | <span id="dayFiveLow">34</span>°F</p>
+                <p class="RobotoRegularFont fiveDayTemp"><span id="dayFiveHigh">74</span>°F | <span
+                        id="dayFiveLow">34</span>°F</p>
             </div>
         </div>
         <!-- 2nd Row End -->
     </div>
 
-        <div id="favoritesBtn"  class="container pt-4 d-flex justify-content-center">
-                <p class="my-0 text-center d-flex align-items-center favoritesBtnS bgTransparent RobotoRegularFont"><span class="heart-text sp-icon-open"><img src="./assets/like.png" alt="heart icon" style="height: 20px;"> Open Your
-                    Favorite Places</p>
-        </div>
-        <div id="favoritesRemoveBtn" class="text-center pt-5"><p>Remove Favorites</p></div>
-        <!-- 3rd Row End -->
-        <!-- Main End -->
+    <div id="favoritesBtn" class=" container pt-4 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#favoritesModal">
+        <p class="my-0 text-center d-flex align-items-center favoritesBtnS bgTransparent RobotoRegularFont"><span
+                class="heart-text sp-icon-open"><img src="./assets/like.png" alt="heart icon" style="height: 20px;">
+                Open Your
+                Favorite Places</p>
+    </div>
+    <div id="favoritesRemoveBtn" class="text-center pt-5">
+        <p>Remove Favorites</p>
+    </div>
+    <!-- 3rd Row End -->
+    <!-- Main End -->
 
-        <!-- Footer -->
-        <div class="row pt-5">
-            <div class="col text-center">
-                <p style="color: white;">handcrafted by Joseph Racca</p>
+    <!-- Footer -->
+    <div class="row pt-5">
+        <div class="col text-center">
+            <p style="color: white;">handcrafted by Joseph Racca</p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">YOUR FAVORITE CITIES</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="favoritesList"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
             </div>
         </div>
-        <!-- Footer End -->
-
-    
+    </div>
 
 
 
