@@ -90,8 +90,9 @@ Completed:
 - completed as much styling as possible
 - styled & clean despite not exact prototype match
 - obtained peer review
-- submitted by deadline with all functionality working
+- got a cool modal for favorites list working great :muscle: :fireworks:
+- submitted by deadline with all functionality working :white_check_mark:
 
-To do:
+To do ***(post due date)***:
 - work on dark mode
 - work on photoshop for correct background / obtain?

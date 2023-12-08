@@ -356,6 +356,11 @@ function addElement(city) {
     cityNameColumn.classList.add("col");
     const cityNameContent = document.createTextNode(city);
     cityNameColumn.appendChild(cityNameContent);
+    cityNameColumn.addEventListener("click", () => {
+        $('#favoritesModal').modal('hide'); // Close the modal (jQuery)
+        userSearch.value = city;
+        success(userSearch.value); // Return to the weather application for the chosen city
+    });
 
     // Create a new div element for the remove button (right column)
     const removeButtonColumn = document.createElement("div");
