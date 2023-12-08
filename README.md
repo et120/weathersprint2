@@ -27,7 +27,7 @@ Completed:
 - began API fetches, shown in console
 
 To do:
-- finish API fetches, shown in console ([X] -8:00pm)
+- finish API fetches, shown in console (:x: -8:00pm)
 
 **DAY 2** :alien:
 
@@ -38,11 +38,11 @@ Completed:
 
 To do:
 - continue with functions for high/low (add to tomorrow's list)
-- finish datetime function for today's time & future dates ([X] -12:50am)
-- icon function for today's date ([X] -12:50am)
-- identify all issues with data *see below ([X] -12:50am)
-- complete minimal styling ([X] -12:50am)
-- add all icons to assets ([X] -12:50am)
+- finish datetime function for today's time & future dates (:x: -12:50am)
+- icon function for today's date (:x: -12:50am)
+- identify all issues with data *see below (:x: -12:50am)
+- complete minimal styling (:x: -12:50am)
+- add all icons to assets (:x: -12:50am)
 
 Issues Identified: 
 - .name is deprecated by weather api (need to use reversegeocoder to obtain city)
@@ -60,7 +60,7 @@ Completed:
 - finished on icon set function
 
 To do:
-- research unix time [X]
+- research unix time :x:
 
 **DAY 4** :sunny:
 
@@ -77,9 +77,9 @@ Completed:
 To do:
 
 - need to start favorites (tomorrow)
-- more styling [X]
-- found correct icons & replaced existing [X]
-- found similar fonts [X]
+- more styling :x:
+- found correct icons & replaced existing :x:
+- found similar fonts :x:
 
 **DAY 5** :sunglasses:
 
