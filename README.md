@@ -2,7 +2,7 @@
 
 Name: Elizabeth Trotter
 
-Date Revised: 12/7/2023
+Date Revised: 12/8/2023
 
 Project: Weather Sprint Week 2
 
@@ -90,6 +90,7 @@ Completed:
 - completed as much styling as possible
 - styled & clean despite not exact prototype match
 - obtained peer review
+- submitted by deadline with all functionality working
 
 To do:
 - work on dark mode
