@@ -9,8 +9,8 @@ Project: Weather Sprint Week 2
 Brief Description: Build a desktop weather application from a given prototype.
 Link to Prototype: https://xd.adobe.com/view/2def5507-24dd-4a9f-b04f-159744f2acc5-78bc/screen/b886202b-6961-44e0-87fa-5bba12bfb99a/
 
-Peer Review: 
-By: 
+Peer Review: Functionality wise it works great, i thought the favorites list was pretty cool, I know you are still working on your favorites list and trying to add a click to make it display the favorited city. 5 day forecast cards need to be shorter and theres still some css that needs to be done. Other than that it looks and works amazing, Job well done! 
+By: Mark Ortega
 
 ------------------------------------------
 
