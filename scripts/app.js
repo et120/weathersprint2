@@ -44,6 +44,10 @@ let dayFiveIcon = document.getElementById("dayFiveIcon");
 let dayFiveHigh = document.getElementById("dayFiveHigh");
 let dayFiveLow = document.getElementById("dayFiveLow");
 
+let favoritesAddBtn = document.getElementById("favoritesAddBtn");
+let favoritesRemoveBtn = document.getElementById("favoritesRemoveBtn");
+let favoritesArray = [];
+
 // JavaScript Variables
 let userLat, userLon;
 let currentWeatherData, locationData, hourlyWeatherData;
@@ -66,6 +70,7 @@ async function success(position) {
         userLon = position.coords.longitude;
     }
 
+    updateFavoritesIcon();
     await currentWeatherAPI();
     await hourlyWeatherAPI();
     await reverseGeoAPI();
@@ -80,6 +85,7 @@ async function errorFunc(error) {
     userLat = 37.9616;
     userLon = -121.2756;
 
+    updateFavoritesIcon();
     await currentWeatherAPI();
     await hourlyWeatherAPI();
     await reverseGeoAPI();
@@ -192,7 +198,7 @@ function hourlyForecast() {
 
             //Today's Morning, Afternoon, Night Temps Based on Tomorrow's Data
             const hours = unixFutureTime.getHours();
-            
+
             const morningStart = 7, morningEnd = 9;
             const afternoonStart = 11, afternoonEnd = 13;
             const nightStart = 17, nightEnd = 19;
@@ -233,17 +239,17 @@ function hourlyForecast() {
 
     //Average Calculations (Today's Morning, Afternoon, Night Temps)
     let sumMorning = 0, sumAfternoon = 0, sumNight = 0;
-    for(let i = 0; i < morningTempsArr.length; i++){
+    for (let i = 0; i < morningTempsArr.length; i++) {
         sumMorning += morningTempsArr[i];
     }
     let morningTempsAverage = sumMorning / morningTempsArr.length;
 
-    for(let i = 0; i < afternoonTempsArr.length; i++){
+    for (let i = 0; i < afternoonTempsArr.length; i++) {
         sumAfternoon += afternoonTempsArr[i];
     }
     let afternoonTempsAverage = sumAfternoon / afternoonTempsArr.length;
 
-    for(let i = 0; i < nightTempsArr.length; i++){
+    for (let i = 0; i < nightTempsArr.length; i++) {
         sumNight += nightTempsArr[i];
     }
     let nightTempsAverage = sumNight / nightTempsArr.length;
@@ -282,7 +288,7 @@ function hourlyForecast() {
 }
 
 //Search
-userSearch.addEventListener('keypress', function(e){
+userSearch.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         success(userSearch.value)
         userSearch.value = "";
@@ -290,7 +296,35 @@ userSearch.addEventListener('keypress', function(e){
         return false;
     }
 });
-searchBtn.addEventListener('click', function(){
+searchBtn.addEventListener('click', function () {
     success(userSearch.value);
     userSearch.value = "";
+});
+
+// Local Storage
+favoritesAddBtn.addEventListener('click', function () {
+    if (favoritesArray.includes(cityName.textContent)) {
+        let index = favoritesArray.indexOf(cityName.textContent);
+        favoritesArray.splice(index, 1);
+        localStorage.setItem("favorites", JSON.stringify(favoritesArray));
+    } else {
+        favoritesArray.push(cityName.textContent);
+        localStorage.setItem("favorites", JSON.stringify(favoritesArray));
+    }
+    updateFavoritesIcon();
+});
+
+function updateFavoritesIcon(){
+    if (favoritesArray.includes(userSearch.value || cityName.textContent)) {
+        favoritesAddBtn.src = "../assets/like.png";
+    } else {
+        favoritesAddBtn.src = "../assets/heart.png";
+    }
+}
+
+favoritesRemoveBtn.addEventListener('click', function () {
+    let index = favoritesArray.indexOf(cityName.value);
+    favoritesArray.splice(index, 1);
+
+    localStorage.setItem("favorites", JSON.stringify(favoritesArray));
 });
