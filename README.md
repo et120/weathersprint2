@@ -65,12 +65,12 @@ To do:
 **DAY 4** :sunny:
 
 Completed:
-- fixed issues 
-    *.name is deprecated by weather api (need to use reversegeocoder to obtain city) :x:
-    *highs & lows being called are only shown for a specific time of day :x:
-    *highs & lows are only available for a specific hour (every 3 hrs) on FUTURE days :x:
-        problem for morning & night for today :x:
-        problem 5 day forecast highs/ lows all days :x:
+- fixed issues :100:
+    *.name is deprecated by weather api (need to use reversegeocoder to obtain city)
+    *highs & lows being called are only shown for a specific time of day
+    *highs & lows are only available for a specific hour (every 3 hrs) on FUTURE days
+        problem for morning & night for today
+        problem 5 day forecast highs/ lows all days
 - finished 5 day forecast all (including high/low function)
 - finished search
 
