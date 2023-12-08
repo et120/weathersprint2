@@ -7,7 +7,7 @@ Date Revised: 12/7/2023
 Project: Weather Sprint Week 2
 
 Brief Description: Build a desktop weather application from a given prototype.
-Figma: https://xd.adobe.com/view/2def5507-24dd-4a9f-b04f-159744f2acc5-78bc/screen/b886202b-6961-44e0-87fa-5bba12bfb99a/
+Link to Prototype: https://xd.adobe.com/view/2def5507-24dd-4a9f-b04f-159744f2acc5-78bc/screen/b886202b-6961-44e0-87fa-5bba12bfb99a/
 
 Peer Review: 
 By: 
