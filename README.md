@@ -7,16 +7,16 @@ Date Revised: 12/7/2023
 Project: Weather Sprint Week 2
 
 Brief Description: Build a desktop weather application from a given prototype.
-Link to: https://xd.adobe.com/view/2def5507-24dd-4a9f-b04f-159744f2acc5-78bc/screen/b886202b-6961-44e0-87fa-5bba12bfb99a/
+Link: https://xd.adobe.com/view/2def5507-24dd-4a9f-b04f-159744f2acc5-78bc/screen/b886202b-6961-44e0-87fa-5bba12bfb99a/
 
-Peer Review: Functionality wise it works great, i thought the favorites list was pretty cool, I know you are still working on your favorites list and trying to add a click to make it display the favorited city. 5 day forecast cards need to be shorter and theres still some css that needs to be done. Other than that it looks and works amazing, Job well done! 
-By: Mark Ortega
+> Peer Review: Functionality wise it works great, i thought the favorites list was pretty cool, I know you are still working on your favorites list and trying to add a click to make it display the favorited city. 5 day forecast cards need to be shorter and theres still some css that needs to be done. Other than that it looks and works amazing, Job well done! 
+> By: Mark Ortega
 
 ------------------------------------------
 
-EOD Reports (due by 3:45pm)
+## EOD Reports *(due by 3:45pm)*
 
-DAY 1
+**DAY 1**
 
 Completed:
 - started coding the basic structure layout HTML
@@ -27,7 +27,7 @@ Completed:
 To do:
 - finish API fetches, shown in console ([X] -8:00pm)
 
-DAY 2
+**DAY 2**
 
 Completed:
 - studied for evaluation
@@ -50,13 +50,17 @@ Issues Identified:
     *problem 5 day forecast highs/ lows all days
 - dates were not corresponding to dates on weather api (fixed)
 
-DAY 3
+**DAY 3**
 
 Completed:
 - worked on grouping days for 5 day forecast
 - worked on high/low function
+- finished on icon set function
 
-DAY 4
+To do:
+- research unix time [X]
+
+**DAY 4**
 
 Completed:
 - fixed issues 
@@ -70,9 +74,21 @@ Completed:
 
 To do:
 
-- need to start favorites
+- need to start favorites (tomorrow)
+- more styling [X]
+- found correct icons & replaced existing [X]
+- found similar fonts [X]
 
-DAY 5
+**DAY 5**
 
 Completed:
--
+- finished favorites functions
+- finished creating elements
+- finished local storage
+- completed as much styling as possible
+- styled & clean despite not exact prototype match
+- obtained peer review
+
+To do:
+- work on dark mode
+- work on photoshop for correct background / obtain?
