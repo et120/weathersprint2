@@ -149,6 +149,25 @@ body {
     padding-right: 130px;
 }
 
+/* Modal */
+.remove-button {
+    background-color: transparent;
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.7); /* Adjust the last parameter (0.9) for transparency */
+}
+
+#favoritesModal {
+    left: 0;     /* Position the modal to the left */
+    right: auto; /* Reset the default right positioning */
+}
+
+.modal-dialog {
+    margin-right: auto; /* Center the modal horizontally */
+    margin-left: 0;     /* Reset the default left margin */
+}
+
 /* Background */
 .bgTransparent {
     background: rgba(255, 255, 255, 0.33);

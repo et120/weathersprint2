@@ -45,13 +45,12 @@ let dayFiveHigh = document.getElementById("dayFiveHigh");
 let dayFiveLow = document.getElementById("dayFiveLow");
 
 let favoritesAddBtn = document.getElementById("favoritesAddBtn");
-let favoritesRemoveBtn = document.getElementById("favoritesRemoveBtn");
 let favoritesArray = [];
 
 // JavaScript Variables
 let userLat, userLon;
 let currentWeatherData, locationData, hourlyWeatherData;
-let todayUnix, todayDateTime, futureDate1, futureDate2, futureDate3, futureDate4, futureDate5, todayMorningUnix, todayAfternoonUnix, todayNightUnix;
+let todayUnix, todayDateTime, futureDate1, futureDate2, futureDate3, futureDate4, futureDate5;
 
 //Geo location is a built in API that allows the user to share their location upon request
 navigator.geolocation.getCurrentPosition(success, errorFunc);
@@ -70,7 +69,6 @@ async function success(position) {
         userLon = position.coords.longitude;
     }
 
-    
     await currentWeatherAPI();
     await hourlyWeatherAPI();
     await reverseGeoAPI();
@@ -86,13 +84,13 @@ async function errorFunc(error) {
     userLat = 37.9616;
     userLon = -121.2756;
 
-    updateFavoritesIcon();
     await currentWeatherAPI();
     await hourlyWeatherAPI();
     await reverseGeoAPI();
     updateDateTime();
     getDates();
     hourlyForecast();
+    updateFavoritesIcon();
 }
 
 //async function allows us to use the key word await, it pauses the execution of the code until the promise is fufilled
@@ -330,14 +328,7 @@ function updateFavoritesIcon(){
     userSearch.value = "";
 }
 
-// favoritesRemoveBtn.addEventListener('click', function () {
-//     let index = favoritesArray.indexOf(cityName.textContent);
-//     favoritesArray.splice(index, 1);
-//     localStorage.setItem("favorites", JSON.stringify(favoritesArray));
-// });
-
-
-
+//Create Elements on Open Modal
 let favoritesList = document.getElementById("favoritesList");
 const favoritesModal = document.getElementById('favoritesModal');
 
@@ -353,38 +344,54 @@ favoritesModal.addEventListener('shown.bs.modal', event => {
 });
 
 function addElement(city) {
-    // Create a new div element
-    const newDiv = document.createElement("div");
+    // Create a new div element for the row
+    const newRow = document.createElement("div");
+    newRow.classList.add("row", "mb-2", "align-items-center"); // Add Bootstrap classes for spacing
+    newRow.style.backgroundColor = "#ffffff";
+    newRow.style.borderRadius = "10px";
+    newRow.style.padding = "10px";
 
-    // Give it some content
-    const newContent = document.createTextNode(city);
+    // Create a new div element for the city name (left column)
+    const cityNameColumn = document.createElement("div");
+    cityNameColumn.classList.add("col");
+    const cityNameContent = document.createTextNode(city);
+    cityNameColumn.appendChild(cityNameContent);
 
-    // Add the text node to the newly created div
-    newDiv.appendChild(newContent);
+    // Create a new div element for the remove button (right column)
+    const removeButtonColumn = document.createElement("div");
+    removeButtonColumn.classList.add("col-auto"); // "col-auto" for a column that only takes the necessary space
+    const removeButton = document.createElement("button");
+    removeButton.classList.add("btn", "remove-button", "btn-md"); // Add Bootstrap button classes
+    removeButton.textContent = "X";
+    removeButton.addEventListener("click", () => removeCity(city)); // Add a click event to remove the city
+    removeButtonColumn.appendChild(removeButton);
 
-    // Add the newly created element and its content into the favoritesList
-    favoritesList.appendChild(newDiv);
+    // Add the left and right columns to the row
+    newRow.appendChild(cityNameColumn);
+    newRow.appendChild(removeButtonColumn);
+
+    // Add the row to the favoritesList
+    favoritesList.appendChild(newRow);
 }
 
+function removeCity(city) {
+    // Handle the removal of the city from the favoritesArray and update the modal
+    const index = favoritesArray.indexOf(city);
+    if (index !== -1) {
+        favoritesArray.splice(index, 1);
+        localStorage.setItem("favorites", JSON.stringify(favoritesArray)); // Update local storage
+        updateFavoritesModalContent(); // Update the modal content immediately
+    }
+    updateFavoritesIcon();
+}
 
-// const favoritesModal = document.getElementById('favoritesModal')
-// favoritesModal.addEventListener('shown.bs.modal', event => {
-//     for(let i = 0; i < favoritesArray.length; i++){
-//         favoritesList.innerHTML = addElement(i);
-//     }
-// })
+function updateFavoritesModalContent() {
+    // Clear the existing content before adding the elements
+    favoritesList.innerHTML = "";
 
-// function addElement(i) {
-//     // create a new div element
-//     const newDiv = document.createElement("div");
-  
-//     // and give it some content
-//     const newContent = document.createTextNode(favoritesArray[i]);
-  
-//     // add the text node to the newly created div
-//     newDiv.appendChild(newContent);
-  
-//     // add the newly created element and its content into the DOM
-//     const currentDiv = document.getElementById("div1");
-//     document.body.insertBefore(newDiv, currentDiv);
-//   }
+    // Loop through the favoritesArray and add each city to the modal
+    for (let i = 0; i < favoritesArray.length; i++) {
+        addElement(favoritesArray[i]);
+    }
+}
+
