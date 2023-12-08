@@ -95,7 +95,7 @@ async function currentWeatherAPI() {
     currentWeatherData = data;
 
     currentTemp.innerHTML = Math.round(currentWeatherData.main.temp);
-    currentDesc.innerHTML = currentWeatherData.weather[0].main;
+    currentDesc.innerHTML = currentWeatherData.weather[0].main.toLowerCase();
     currentHigh.innerHTML = Math.round(currentWeatherData.main.temp_max);
     currentLow.innerHTML = Math.round(currentWeatherData.main.temp_min);
     setIcon(currentWeatherIcon, currentWeatherData.weather[0].main);
@@ -118,25 +118,25 @@ async function hourlyWeatherAPI() {
 function setIcon(element, weather) {
     switch (weather) {
         case "Clear":
-            element.src = "./assets/clear.png";
+            element.innerHTML = "1";
             break;
         case "Clouds":
-            element.src = "./assets/clouds.png";
+            element.innerHTML = "A";
             break;
         case "Drizzle":
-            element.src = "./assets/rain.png";
+            element.innerHTML = "M";
             break;
         case "Rain":
-            element.src = "./assets/rain.png";
+            element.innerHTML = "U";
             break;
         case "Snow":
-            element.src = "./assets/snowflake.png";
+            element.innerHTML = "I";
             break;
         case "Thunderstorm":
-            element.src = "./assets/thunderstorm.png";
+            element.innerHTML = "Q";
             break;
         default:
-            element.src = "./assets/mist.png";
+            element.innerHTML = "Z";
             break;
     }
 }
@@ -256,7 +256,7 @@ function hourlyForecast() {
     afternoonTemp.innerHTML = Math.round(afternoonTempsAverage);
 
     // setIcon(nightIcon, nightCondition);
-    nightIcon.src = "./assets/moon.png";
+    nightIcon.innerHTML = "6";
     nightTemp.innerHTML = Math.round(nightTempsAverage);
 
     // 5 Day Forcast Set (Calculate Highest & Lowest)
