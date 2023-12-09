@@ -399,4 +399,3 @@ function updateFavoritesModalContent() {
         addElement(favoritesArray[i]);
     }
 }
-
