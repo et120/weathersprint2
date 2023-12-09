@@ -332,7 +332,7 @@ function updateFavoritesIcon(){
 let favoritesList = document.getElementById("favoritesList");
 const favoritesModal = document.getElementById('favoritesModal');
 
-// Assuming you're using Bootstrap for your modal, use the 'shown.bs.modal' event
+// Assuming using Bootstrap for modal, use the 'shown.bs.modal' event
 favoritesModal.addEventListener('shown.bs.modal', event => {
     // Clear the existing content before adding the elements
     favoritesList.innerHTML = "";

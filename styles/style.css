@@ -10,6 +10,11 @@
     font-size: 7rem;
 }
 
+.weatherIconFontLarge {
+    font-family: artilweathericons;
+    font-size: 12rem;
+}
+
 /* Font Families */
 @font-face {
     font-family: elmessiri-bold;

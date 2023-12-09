@@ -96,3 +96,5 @@ Completed:
 To do ***(post due date)***:
 - work on dark mode
 - work on photoshop for correct background / obtain?
+- finish styling
+- state names
