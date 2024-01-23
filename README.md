@@ -1,4 +1,4 @@
-# Weather Sprint 2
+# Weather Sprint
 
 Name: Elizabeth Trotter
 
